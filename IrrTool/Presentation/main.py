@@ -7,44 +7,31 @@ from IrrTool.Domain.Movimentation.investment import Investment
 from IrrTool.Infraestructure.load_from_json import LoadFromjson
 
 parser = argparse.ArgumentParser(
-    description='Calculate irr value from investment and installment document'
+    description="Calculate irr value from investment and installment document"
 )
 parser.add_argument(
-    '--installment',
-    help='load installment document',
-    default='./static/installments.json'
+    "--installment",
+    help="load installment document",
+    default="./static/installments.json",
 )
 parser.add_argument(
-    '--investment',
-    help='load investment document',
-    default='./static/investments.json'
+    "--investment", help="load investment document", default="./static/investments.json"
 )
 parser.add_argument(
-    '--id',
-    help='specify the id for the calc',
-    nargs='+',
-    default=[],
-    type=int
+    "--id", help="specify the id for the calc", nargs="+", default=[], type=int
 )
-parser.add_argument('--all', help='irr calc from all investments', action='all')
+parser.add_argument("--all", help="irr calc from all investments", action="all")
 
 args = parser.parse_args()
 
 loader = LoadFromjson()
 
-installment = Installment(
-    content=loader.load(path=args.installment)['installments']
-)
-investment = Investment(
-    content=loader.load(path=args.investment)['investments']
-)
+installment = Installment(content=loader.load(path=args.installment)["installments"])
+investment = Investment(content=loader.load(path=args.investment)["investments"])
 investment.prepare()
 installment.prepare()
 
-flow = CashFlow(
-    investment=investment,
-    installment=installment
-)
+flow = CashFlow(investment=investment, installment=installment)
 flow.execute()
 
 calc = CalcIrr(flow)
@@ -64,8 +51,10 @@ if args.all:
     print("Calculating irr from all investments...")
     result = calc.from_all()
 
+
 def print_irr(content: dict):
     for key in content.keys():
-        print(f'Investment [{key}] - {content[key]}')
+        print(f"Investment [{key}] - {content[key]}")
+
 
 print_irr(result)

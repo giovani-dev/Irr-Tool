@@ -12,14 +12,12 @@ class Installment(IMovimentation):
 
     def prepare(self):
         self.dataframe = pd.DataFrame(
-            self.content,
-            columns=['investment_id', 'due_date', 'amount']
+            self.content, columns=["investment_id", "due_date", "amount"]
         )
         self.dataframe = self.dataframe.dropna()
-        self.dataframe['investment_id'] = self.dataframe['investment_id'].astype(int)
-        self.dataframe['due_date'] = pd.to_datetime(self.dataframe['due_date'])
-        self.dataframe['amount'] = pd.to_numeric(self.dataframe['amount'])
+        self.dataframe["investment_id"] = self.dataframe["investment_id"].astype(int)
+        self.dataframe["due_date"] = pd.to_datetime(self.dataframe["due_date"])
+        self.dataframe["amount"] = pd.to_numeric(self.dataframe["amount"])
         self.dataframe.rename(
-            columns={'investment_id': 'id', 'due_date': 'date'},
-            inplace=True
+            columns={"investment_id": "id", "due_date": "date"}, inplace=True
         )

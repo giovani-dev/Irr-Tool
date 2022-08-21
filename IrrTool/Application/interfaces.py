@@ -8,7 +8,8 @@ class IMovimentation(ABC):
     content: List[dict]
 
     @abstractmethod
-    def prepare(self): ...
+    def prepare(self):
+        ...
 
 
 class IFlow(ABC):
@@ -18,4 +19,5 @@ class IFlow(ABC):
     flow: Dict[int, Any]
 
     @abstractmethod
-    def execute(self) -> None: ...
+    def execute(self) -> None:
+        ...
