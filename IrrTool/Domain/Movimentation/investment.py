@@ -13,15 +13,11 @@ class Investment(IMovimentation):
 
     def prepare(self):
         self.dataframe = pd.DataFrame(
-            self.content,
-            columns=['id', 'created_at', 'amount']
+            self.content, columns=["id", "created_at", "amount"]
         )
         self.dataframe = self.dataframe.dropna()
-        self.dataframe['id'] = self.dataframe['id'].astype(int)
-        self.dataframe['created_at'] = pd.to_datetime(self.dataframe['created_at'])
-        self.dataframe['amount'] = pd.to_numeric(self.dataframe['amount'])
-        self.dataframe['amount'] = self.dataframe['amount'] * -1
-        self.dataframe.rename(
-            columns={'created_at':'date'},
-            inplace=True
-        )
+        self.dataframe["id"] = self.dataframe["id"].astype(int)
+        self.dataframe["created_at"] = pd.to_datetime(self.dataframe["created_at"])
+        self.dataframe["amount"] = pd.to_numeric(self.dataframe["amount"])
+        self.dataframe["amount"] = self.dataframe["amount"] * -1
+        self.dataframe.rename(columns={"created_at": "date"}, inplace=True)

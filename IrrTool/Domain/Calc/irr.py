@@ -1,5 +1,3 @@
-
-
 from typing import Dict, List
 from IrrTool.Domain.Flow.flow import CashFlow
 import numpy_financial as npf
@@ -7,7 +5,6 @@ import concurrent.futures
 
 
 class CalcIrr:
-
     def __init__(self, flow: CashFlow) -> None:
         self._flow = flow
 

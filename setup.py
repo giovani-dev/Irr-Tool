@@ -12,11 +12,13 @@ requirements = [
     'six==1.16.0'
 ]
 
-if app_enviroment != 'dev' or app_enviroment != 'homolog' or \
-    app_enviroment == 'stage' or not app_enviroment:
+if app_enviroment != 'dev' or not app_enviroment:
         requirements.append('pytest==7.1.2')
-        # requirements.append('pytest-freezegun==0.4.2')
+        requirements.append('pytest-freezegun==0.4.2')
         requirements.append('pytest-asyncio==0.19.0')
+        requirements.append('black==22.6.0')
+        requirements.append('black==22.6.0')
+        requirements.append('pylint==2.14.5')
 
 
 setuptools.setup(
