@@ -20,7 +20,7 @@ parser.add_argument(
 parser.add_argument(
     "--id", help="specify the id for the calc", nargs="+", default=[], type=int
 )
-parser.add_argument("--all", help="irr calc from all investments", action="all")
+parser.add_argument("--all", help="irr calc from all investments")
 
 args = parser.parse_args()
 
@@ -38,16 +38,20 @@ calc = CalcIrr(flow)
 
 result = None
 
+if args.id and args.all:
+    raise Exception('Use one argument!')
+
 if args.id and len(args.id) > 1:
     print(f"Calculanting irr from {args.id}")
     result = calc.from_id_list(id_list=args.id)
 elif args.id and len(args.id) == 1:
     print(f"Calculanting irr from {args.id[0]}")
     result = calc.from_one(_id=args.id[0])
-else:
-    raise SystemError
 
 if args.all:
+    print("Calculating irr from all investments...")
+    result = calc.from_all()
+else:
     print("Calculating irr from all investments...")
     result = calc.from_all()
 
